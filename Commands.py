@@ -38,20 +38,20 @@ commands = [  # command description used in the "help" command
 ]
 
 symbols = [
-    u"\u25FB\uFE0F" + ' Empty field without special power',
-    u"\u2716\uFE0F" + ' Field covered with a card',  # X
-    u"\U0001F52E" + ' Presidential Power: Policy Peek',  # crystal
-    u"\U0001F50E" + ' Presidential Power: Investigate Loyalty',  # inspection glass
-    u"\U0001F5E1" + ' Presidential Power: Execution',  # knife
-    u"\U0001F454" + ' Presidential Power: Call Special Election',  # tie
-    u"\U0001F54A" + ' Liberals win',  # dove
-    u"\u2620" + ' Fascists win'  # skull
+    u"\u25FB\uFE0F" + ' Nada, porra nenhuma ',
+    u"\u2716\uFE0F" + ' Carta',  # X
+    u"\U0001F52E" + ' Poder presidencial: Mãe de ná, ver as próximas cartas',  # crystal
+    u"\U0001F468" + ' Poder presidential: Lava-Jato, ver se é petralha ou não',  # inspection glass
+    u"\U0001F52B" + ' Poder presidencial: Meter a azeitona',  # knife
+    u"\U0001F9DB" + ' Poder presidencial: Acusar o golpe, indicar um amiguinho pra presidente',  # tie
+    u"\u2692" + ' Petralhada ganhou, Pablo Vittar nas notas de R$50,00',  # dove
+    u"\u2620" + ' Bonoro ganhou, #NovaEra'  # skull
 ]
 
 
 def command_symbols(bot, update):
     cid = update.message.chat_id
-    symbol_text = "The following symbols can appear on the board: \n"
+    symbol_text = "Estes símbolos vão aparecer no tabuleiro: \n"
     for i in symbols:
         symbol_text += i + "\n"
     bot.send_message(cid, symbol_text)
@@ -63,9 +63,9 @@ def command_board(bot, update):
         if GamesController.games[cid].board:
             bot.send_message(cid, GamesController.games[cid].board.print_board())
         else:
-            bot.send_message(cid, "There is no running game in this chat. Please start the game with /startgame")
+            bot.send_message(cid, "Não tem nenhum jogo em andamento no chat. Para começar digite /iniciarjogo")
     else:
-        bot.send_message(cid, "There is no game in this chat. Create a new game with /newgame")
+        bot.send_message(cid, "Não tem nenhum jogo criado neste chat. Crie um novo jogo digitando /novojogo")
 
 
 def command_start(bot, update):
@@ -84,7 +84,7 @@ def command_rules(bot, update):
     cid = update.message.chat_id
     btn = [[InlineKeyboardButton("Rules", url="http://www.secrethitler.com/assets/Secret_Hitler_Rules.pdf")]]
     rulesMarkup = InlineKeyboardMarkup(btn)
-    bot.send_message(cid, "Read the official Secret Hitler rules:", reply_markup=rulesMarkup)
+    bot.send_message(cid, "Leia as regras oficiais do Secret Hitler:", reply_markup=rulesMarkup)
 
 
 # pings the bot
@@ -99,7 +99,7 @@ def command_stats(bot, update):
     if cid == ADMIN:
         with open(STATS, 'r') as f:
             stats = json.load(f)
-        stattext = "+++ Statistics +++\n" + \
+        stattext = "+++ Estatísticas +++\n" + \
                     "Liberal Wins (policies): " + str(stats.get("libwin_policies")) + "\n" + \
                     "Liberal Wins (killed Hitler): " + str(stats.get("libwin_kill")) + "\n" + \
                     "Fascist Wins (policies): " + str(stats.get("fascwin_policies")) + "\n" + \
@@ -113,7 +113,7 @@ def command_stats(bot, update):
 # help page
 def command_help(bot, update):
     cid = update.message.chat_id
-    help_text = "The following commands are available:\n"
+    help_text = "Comandos:\n"
     for i in commands:
         help_text += i + "\n"
     bot.send_message(cid, help_text)
@@ -209,9 +209,10 @@ def command_cancelgame(bot, update):
         if update.message.from_user.id == game.initiator or status in ("administrator", "creator"):
             MainController.end_game(bot, game, 99)
         else:
-            bot.send_message(cid, "Only the initiator of the game or a group admin can cancel the game with /cancelgame")
+            bot.send_message(cid, "Só quem começou o jogo ou o admin do grupo podem cancelar o jogo com /cancelgame, o resto é golpe")
     else:
         bot.send_message(cid, "There is no game in this chat. Create a new game with /newgame")
+        bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /newgame")
 
 
 def command_votes(bot, update):

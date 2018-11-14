@@ -1,34 +1,28 @@
-# Telegram Bot for the card game Secret Hitler
-This is a simple Telegram Bot for the political (and in my opinion highly entertaining and educational) card game [Secret Hitler](http://secrethitler.com/).
-Go check out this awesome game and support the creators!
+# Bot de Telegram Secret Bonoro
+Este bot é uma variação do jogo [Secret Hitler](http://secrethitler.com/), as regras são as mesmas, a única variação são os personagens e a tradução para português brasileiro.
 
-## Start a game
-You can contact the bot via [t.me/thesecrethitlerbot](https://t.me/thesecrethitlerbot) or in Telegram under the name @thesecrethitlerbot.
-Click Start and add the bot to your group (you need 5-10 people). The rest should be self explanatory.
-If you have any problems or find a bug please open an issue here on github!
+## Como começar
+Chame o bot via TBD ou pelo telgram usando o nome @TBD.
+Clique em start e adicione o bot a um grupo (são necessários de 5 a 10 jogadores).
 
-## The following commands are available:
+## Comandos
+/ajuda - Ajuda sobre todos os comandos disponíveis
 
-/help - Gives you information about the available commands
+/start - Inicia o jogo
 
-/start - Gives you a short piece of information about Secret Hitler
+/symbols - Mostra o significado de cada símbolo do jogo
 
-/symbols - Shows you all possible symbols of the board
+/regras - Passa um link para as regras oficiais do Secret Hitler
 
-/rules - Gives you a link to the official Secret Hitler rules
+/novojogo - Começa um novo jogo
 
-/newgame - Creates a new game
+/participar - Adiciona você a partida
 
-/join - Joins an existing game
+/iniciarjogo - Começa a partida com todos os jogadores que decidiram participar da partida
 
-/startgame - Starts an existing game when all players have joined
+/cancelarjogo - Cancela o jogo
 
-/cancelgame - Cancels an existing game. All data of the game will be lost
-
-/board - Prints the current board with fascist and liberals tracks, presidential order and election counter
-
-## Test new features
-The above mentioned bot is not necessarily running the latest version of this github repo. To test new features you can use [the @sechit_testbot](http://t.me/sechit_testbot). After some test games and a few weeks the latest code is also deployed to the main bot.
+/tabuleiro - Mostra a situação do jogo, a contagem de votos, cards disponíveis e ordem de eleição presidencial
 
 ## Copyright and licence
 Secret Hitler (© 2016 GOAT, WOLF, & CABBAGE) is designed by Max Temkin (Cards Against Humanity, Humans vs. Zombies) Mike Boxleiter (Solipskier, TouchTone), Tommy Maranges (Philosophy Bro) and illustrated by Mackenzie Schubert (Letter Tycoon, Penny Press).
