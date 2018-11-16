@@ -1,3 +1,4 @@
+# coding: utf-8
 from Constants.Cards import playerSets
 from Constants.Cards import policies
 import random
