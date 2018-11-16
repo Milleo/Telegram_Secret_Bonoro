@@ -41,13 +41,13 @@ commands = [  # command description used in the "help" command
 
 symbols = [
     u"\u25FB\uFE0F" + ' Nada, porra nenhuma ',
-    u"\u2716\uFE0F" + ' Carta',  # X
+    u"\u2716\uFE0F" + ' Política eleita',  # X
     u"\U0001F52E" + ' Poder presidencial: Mãe de ná, ver as próximas cartas',  # crystal
-    u"\U0001F468" + ' Poder presidential: Lava-Jato, ver se é petralha ou não',  # inspection glass
+    u"\U0001F50D" + ' Poder presidential: Lava-Jato, ver se é petralha ou não',  # inspection glass
     u"\U0001F52B" + ' Poder presidencial: Meter a azeitona',  # knife
-    u"\U0001F9DB" + ' Poder presidencial: Acusar o golpe, indicar um amiguinho pra presidente',  # tie
+    u"\U0001F608" + ' Poder presidencial: Acusar o golpe, indicar um amiguinho pra presidente',  # tie
     u"\u2692" + ' Petralhada ganhou, Pablo Vittar nas notas de R$50,00',  # dove
-    u"\u2620" + ' Bonoro ganhou, #NovaEra'  # skull
+    u"\u2620" + ' Bonoro ganhou, #NovaEra com muito .38 e Pitú'  # skull
 ]
 
 
