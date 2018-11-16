@@ -73,12 +73,14 @@ def command_tabuleiro(bot, update):
 def command_start(bot, update):
     cid = update.message.chat_id
     bot.send_message(cid,
-                     "\"Secret Hitler is a social deduction game for 5-10 people about finding and stopping the Secret Hitler."
-                     " The majority of players are liberals. If they can learn to trust each other, they have enough "
-                     "votes to control the table and win the game. But some players are fascists. They will say whatever "
-                     "it takes to get elected, enact their agenda, and blame others for the fallout. The liberals must "
-                     "work together to discover the truth before the fascists install their cold-blooded leader and win "
-                     "the game.\"\n- official description of Secret Hitler\n\nAdd me to a group and type /newgame to create a game!")
+                     "Secret Bonoro é um jogo de dedução social para no mínimo 5 e até 10 jogadores onde devem descorir e parar Bonoro."
+                     " A maioria dos jogadores são PeTralhas. Se eles confiarem uns nos outros, eles terão votos o suficente "
+                     "para transformar o Brasil numa Venezuela e ganhar jogo. Mas alguns jogadores são bolsominions. Eles vão se utilizar "
+                     "de fake news no zip zop para que o mito seja eleito, implantar a agenda anti-marxista e culpar os PeTralhas."
+                     "A PeTralhada deve trabalhar junta para que juntos descubram a verdade antes que os bolsominions coloquem suas políticas em prática"
+                     "e ganhar o jogo expulsando o MaisMédicos, acabando com a HéteroFobia e garantindo liberdade de expressão pro Danillo Gentilli\n\n"
+                     "Adicione-me a um grupo e digite /novojogo para começar!")
+
     command_ajuda(bot, update)
 
 
@@ -126,9 +128,9 @@ def command_novojogo(bot, update):
     game = GamesController.games.get(cid, None)
     groupType = update.message.chat.type
     if groupType not in ['group', 'supergroup']:
-        bot.send_message(cid, "You have to add me to a group first and type /newgame there!")
+        bot.send_message(cid, "Primeiro você tem que me adicionar a um grupo e digitar /novojogo")
     elif game:
-        bot.send_message(cid, "There is currently a game running. If you want to end it please type /cancelgame!")
+        bot.send_message(cid, "Já existe um jogo em andamento, se você quiser finalizar digite /cancelarjogo")
     else:
         GamesController.games[cid] = Game(cid, update.message.from_user.id)
         with open(STATS, 'r') as f:
@@ -137,7 +139,7 @@ def command_novojogo(bot, update):
             stats.get("groups").append(cid)
             with open(STATS, 'w') as f:
                 json.dump(stats, f)
-        bot.send_message(cid, "New game created! Each player has to /join the game.\nThe initiator of this game (or the admin) can /join too and type /startgame when everyone has joined the game!")
+        bot.send_message(cid, "Novo jogo criado! Cada jogador deve mandar o comando /participar do jogo.\nQuem iniciou o jogo (ou o admin do grupo) pode, /participar também e então digitar /iniciarjogo quando todos já confirmaram participação")
 
 
 def command_participar(bot, update):
@@ -148,32 +150,32 @@ def command_participar(bot, update):
     fname = update.message.from_user.first_name
 
     if groupType not in ['group', 'supergroup']:
-        bot.send_message(cid, "You have to add me to a group first and type /newgame there!")
+        bot.send_message(cid, "Primeiro você tem que me adicionar a um grupo e digitar /novojogo")
     elif not game:
-        bot.send_message(cid, "There is no game in this chat. Create a new game with /newgame")
+        bot.send_message(cid, "Não tem nenhum jogo em andamento no chat. Para começar digite /novojogo")
     elif game.board:
-        bot.send_message(cid, "The game has started. Please wait for the next game!")
+        bot.send_message(cid, "O jogo já começou, espera o próximo.")
     elif update.message.from_user.id in game.playerlist:
-        bot.send_message(game.cid, "You already joined the game, %s!" % fname)
+        bot.send_message(game.cid, "Você já está participando do jogo, %s, seu arrombado!" % fname)
     elif len(game.playerlist) >= 10:
-        bot.send_message(game.cid, "You have reached the maximum amount of players. Please start the game with /startgame!")
+        bot.send_message(game.cid, "Esse jogo já está com capacidade máxima, para começar digite /comecarjogo!")
     else:
         uid = update.message.from_user.id
         player = Player(fname, uid)
         try:
-            bot.send_message(uid, "You joined a game in %s. I will soon tell you your secret role." % groupName)
+            bot.send_message(uid, "Você está participando de um jogo em %s. Logo vou falar seu papel." % groupName)
             game.add_player(uid, player)
         except Exception:
             bot.send_message(game.cid,
-                             fname + ", I can\'t send you a private message. Please go to @thesecrethitlerbot and click \"Start\".\nYou then need to send /join again.")
+                             fname + ", Eu não consigo te mandar uma mensagem privada, abra um chat com @SecretBonoroBot e clique em \"start\".\nDepois envie neste chat \participar de novo")
         else:
             log.info("%s (%d) joined a game in %d" % (fname, uid, game.cid))
             if len(game.playerlist) > 4:
-                bot.send_message(game.cid, fname + " has joined the game. Type /startgame if this was the last player and you want to start with %d players!" % len(game.playerlist))
+                bot.send_message(game.cid, fname + " está participando do jogo. Digite /iniciarjogo se você quiser começar o jogo com %d jogadores!" % len(game.playerlist))
             elif len(game.playerlist) == 1:
-                bot.send_message(game.cid, "%s has joined the game. There is currently %d player in the game and you need 5-10 players." % (fname, len(game.playerlist)))
+                bot.send_message(game.cid, "%s está particpando do jogo. Por enquanto temos %d jogadores participando, e precisamos de 5 a 10 jogadores." % (fname, len(game.playerlist)))
             else:
-                bot.send_message(game.cid, "%s has joined the game. There are currently %d players in the game and you need 5-10 players." % (fname, len(game.playerlist)))
+                bot.send_message(game.cid, "%s está particpando do jogo. Por enquanto temos %d jogadores participando, e precisamos de 5 a 10 jogadores." % (fname, len(game.playerlist)))
 
 
 def command_comecarjogo(bot, update):
@@ -181,13 +183,13 @@ def command_comecarjogo(bot, update):
     cid = update.message.chat_id
     game = GamesController.games.get(cid, None)
     if not game:
-        bot.send_message(cid, "There is no game in this chat. Create a new game with /newgame")
+        bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /novojogo")
     elif game.board:
-        bot.send_message(cid, "The game is already running!")
+        bot.send_message(cid, "O jogo já começou!")
     elif update.message.from_user.id != game.initiator and bot.getChatMember(cid, update.message.from_user.id).status not in ("administrator", "creator"):
-        bot.send_message(game.cid, "Only the initiator of the game or a group admin can start the game with /startgame")
+            bot.send_message(cid, "Só quem começou o jogo ou o admin do grupo podem comecar o jogo com /comecarjogo, o resto é golpe")
     elif len(game.playerlist) < 5:
-        bot.send_message(game.cid, "There are not enough players (min. 5, max. 10). Join the game with /join")
+        bot.send_message(game.cid, "Não têm jogadores o suficiente na partida (min. 5, máx. 10). Entre no jogo com /participar")
     else:
         player_number = len(game.playerlist)
         MainController.inform_players(bot, game, game.cid, player_number)
@@ -213,7 +215,7 @@ def command_cancelarjogo(bot, update):
         else:
             bot.send_message(cid, "Só quem começou o jogo ou o admin do grupo podem cancelar o jogo com /cancelgame, o resto é golpe")
     else:
-        bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /newgame")
+        bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /novojogo")
 
 
 def command_votos(bot, update):
@@ -226,25 +228,25 @@ def command_votos(bot, update):
             game = GamesController.games.get(cid, None)
             if not game.dateinitvote:
                 # If date of init vote is null, then the voting didnt start
-                bot.send_message(cid, "The voting didn't start yet.")
+                bot.send_message(cid, "Ainda não começou o período eleitoral, sossega aí")
             else:
                 #If there is a time, compare it and send history of votes.
                 start = game.dateinitvote
                 stop = datetime.datetime.now()
                 elapsed = stop - start
                 if elapsed > datetime.timedelta(minutes=1):
-                    history_text = "Vote history for President %s and Chancellor %s:\n\n" % (game.board.state.nominated_president.name, game.board.state.nominated_chancellor.name)
+                    history_text = "Histórico de votação para o presidente %s e o vice %s:\n\n" % (game.board.state.nominated_president.name, game.board.state.nominated_chancellor.name)
                     for player in game.player_sequence:
                         # If the player is in the last_votes (He voted), mark him as he registered a vote
                         if player.uid in game.board.state.last_votes:
-                            history_text += "%s registered a vote.\n" % (game.playerlist[player.uid].name)
+                            history_text += "%s votou.\n" % (game.playerlist[player.uid].name)
                         else:
-                            history_text += "%s didn't register a vote.\n" % (game.playerlist[player.uid].name)
+                            history_text += "%s ainda não votou.\n" % (game.playerlist[player.uid].name)
                     bot.send_message(cid, history_text)
                 else:
-                    bot.send_message(cid, "Five minutes must pass to see the votes")
+                    bot.send_message(cid, "A apuração dos votos só está disponível depois de 5 minutos")
         else:
-            bot.send_message(cid, "There is no game in this chat. Create a new game with /newgame")
+            bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /novojogo")
     except Exception as e:
         bot.send_message(cid, str(e))
 
@@ -259,7 +261,7 @@ def command_vempraurna(bot, update):
             game = GamesController.games.get(cid, None)
             if not game.dateinitvote:
                 # If date of init vote is null, then the voting didnt start
-                bot.send_message(cid, "The voting didn't start yet.")
+                bot.send_message(cid, "Ainda não começou o período eleitoral, sossega aí")
             else:
                 #If there is a time, compare it and send history of votes.
                 start = game.dateinitvote
@@ -271,11 +273,11 @@ def command_vempraurna(bot, update):
                     for player in game.player_sequence:
                         # If the player is not in last_votes send him reminder
                         if player.uid not in game.board.state.last_votes:
-                            history_text += "It's time to vote [%s](tg://user?id=%d).\n" % (game.playerlist[player.uid].name, player.uid)
+                            history_text += "#VemPraUrna [%s](tg://user?id=%d).\n" % (game.playerlist[player.uid].name, player.uid)
                     bot.send_message(cid, text=history_text, parse_mode=ParseMode.MARKDOWN)
                 else:
-                    bot.send_message(cid, "Five minutes must pass to see call to vote")
+                    bot.send_message(cid, "A apuração dos votos só está disponível depois de 5 minutos")
         else:
-            bot.send_message(cid, "There is no game in this chat. Create a new game with /newgame")
+            bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /novojogo")
     except Exception as e:
         bot.send_message(cid, str(e))
