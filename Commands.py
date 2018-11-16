@@ -51,7 +51,7 @@ symbols = [
 ]
 
 
-def command_symbols(bot, update):
+def command_simbolos(bot, update):
     cid = update.message.chat_id
     symbol_text = "Estes símbolos vão aparecer no tabuleiro: \n"
     for i in symbols:
@@ -59,7 +59,7 @@ def command_symbols(bot, update):
     bot.send_message(cid, symbol_text)
 
 
-def command_board(bot, update):
+def command_tabuleiro(bot, update):
     cid = update.message.chat_id
     if cid in GamesController.games.keys():
         if GamesController.games[cid].board:
