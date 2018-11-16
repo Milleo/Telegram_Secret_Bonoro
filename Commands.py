@@ -79,7 +79,7 @@ def command_start(bot, update):
                      "it takes to get elected, enact their agenda, and blame others for the fallout. The liberals must "
                      "work together to discover the truth before the fascists install their cold-blooded leader and win "
                      "the game.\"\n- official description of Secret Hitler\n\nAdd me to a group and type /newgame to create a game!")
-    command_help(bot, update)
+    command_ajuda(bot, update)
 
 
 def command_regras(bot, update):
