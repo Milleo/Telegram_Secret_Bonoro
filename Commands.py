@@ -82,7 +82,7 @@ def command_start(bot, update):
     command_help(bot, update)
 
 
-def command_rules(bot, update):
+def command_regras(bot, update):
     cid = update.message.chat_id
     btn = [[InlineKeyboardButton("Rules", url="http://www.secrethitler.com/assets/Secret_Hitler_Rules.pdf")]]
     rulesMarkup = InlineKeyboardMarkup(btn)
@@ -113,7 +113,7 @@ def command_stats(bot, update):
 
 
 # help page
-def command_help(bot, update):
+def command_ajuda(bot, update):
     cid = update.message.chat_id
     help_text = "Comandos:\n"
     for i in commands:
@@ -121,7 +121,7 @@ def command_help(bot, update):
     bot.send_message(cid, help_text)
 
 
-def command_newgame(bot, update):
+def command_novojogo(bot, update):
     cid = update.message.chat_id
     game = GamesController.games.get(cid, None)
     groupType = update.message.chat.type
@@ -140,7 +140,7 @@ def command_newgame(bot, update):
         bot.send_message(cid, "New game created! Each player has to /join the game.\nThe initiator of this game (or the admin) can /join too and type /startgame when everyone has joined the game!")
 
 
-def command_join(bot, update):
+def command_participar(bot, update):
     groupName = update.message.chat.title
     cid = update.message.chat_id
     groupType = update.message.chat.type
@@ -176,7 +176,7 @@ def command_join(bot, update):
                 bot.send_message(game.cid, "%s has joined the game. There are currently %d players in the game and you need 5-10 players." % (fname, len(game.playerlist)))
 
 
-def command_startgame(bot, update):
+def command_comecarjogo(bot, update):
     log.info('command_startgame called')
     cid = update.message.chat_id
     game = GamesController.games.get(cid, None)
@@ -202,7 +202,7 @@ def command_startgame(bot, update):
         #bot.send_message(ADMIN, "Game of Secret Hitler started in group %s (%d)" % (group_name, cid))
         MainController.start_round(bot, game)
 
-def command_cancelgame(bot, update):
+def command_cancelarjogo(bot, update):
     log.info('command_cancelgame called')
     cid = update.message.chat_id
     if cid in GamesController.games.keys():
@@ -216,7 +216,7 @@ def command_cancelgame(bot, update):
         bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /newgame")
 
 
-def command_votes(bot, update):
+def command_votos(bot, update):
     try:
         #Send message of executing command
         cid = update.message.chat_id
@@ -249,7 +249,7 @@ def command_votes(bot, update):
         bot.send_message(cid, str(e))
 
 
-def command_calltovote(bot, update):
+def command_vempraurna(bot, update):
     try:
         #Send message of executing command
         cid = update.message.chat_id
