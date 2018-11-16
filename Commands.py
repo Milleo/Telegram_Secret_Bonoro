@@ -26,17 +26,17 @@ log.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
 logger = log.getLogger(__name__)
 
 commands = [  # command description used in the "help" command
-    '/help - Gives you information about the available commands',
-    '/start - Gives you a short piece of information about Secret Hitler',
-    '/symbols - Shows you all possible symbols of the board',
-    '/rules - Gives you a link to the official Secret Hitler rules',
-    '/newgame - Creates a new game',
-    '/join - Joins an existing game',
-    '/startgame - Starts an existing game when all players have joined',
-    '/cancelgame - Cancels an existing game. All data of the game will be lost',
-    '/board - Prints the current board with fascist and liberals tracks, presidential order and election counter',
-    '/votes - Prints who voted',
-    '/calltovote - Calls the players to vote'
+    '/ajuda - Informações de todos os comandos do bot',
+    '/start - Um pequeno guia sobre o secret bonoro',
+    '/simbolos - Mostra todos os ícones do tabuleiro',
+    '/regras - Link para o PDF oficial do Secret Hitler',
+    '/novojogo - Cria um novo jogo',
+    '/participar - Participa do jogo criado',
+    '/comecarjogo - Começa um jogo assim que todos os jogadores já marcaram para participar',
+    '/cancelarjogo - Cancela o jogo em andamento.',
+    '/tabuleiro - Mostra a situação atual: ordem de presidentes, políticas eleitas e etc.',
+    '/votos - Mostra quem já votou',
+    '/vempraurna - Chama os jogadores para votar'
 ]
 
 symbols = [
