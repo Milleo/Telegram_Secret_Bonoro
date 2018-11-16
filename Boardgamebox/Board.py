@@ -22,7 +22,7 @@ class Board(object):
                 board += u"\U0001F54A" + " " #dove
             else:
                 board += u"\u25FB\uFE0F" + " " #empty
-        board += "\n--- Leis em favor da família ---\n"
+        board += "\n--- Leis em favor da família tradicional brasileira ---\n"
         for i in range(6):
             if i < self.state.fascist_track:
                 board += u"\u2716\uFE0F" + " " #X

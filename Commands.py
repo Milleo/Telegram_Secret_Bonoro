@@ -100,13 +100,13 @@ def command_stats(bot, update):
         with open(STATS, 'r') as f:
             stats = json.load(f)
         stattext = "+++ Estatísticas +++\n" + \
-                    "Liberal Wins (policies): " + str(stats.get("libwin_policies")) + "\n" + \
-                    "Liberal Wins (killed Hitler): " + str(stats.get("libwin_kill")) + "\n" + \
-                    "Fascist Wins (policies): " + str(stats.get("fascwin_policies")) + "\n" + \
-                    "Fascist Wins (Hitler chancellor): " + str(stats.get("fascwin_hitler")) + "\n" + \
-                    "Games cancelled: " + str(stats.get("cancelled")) + "\n\n" + \
-                    "Total amount of groups: " + str(len(stats.get("groups"))) + "\n" + \
-                    "Games running right now: "
+                    "Petralhas Ganharam (políticas): " + str(stats.get("libwin_policies")) + "\n" + \
+                    "Petralhas Ganharam (esfaquearam o Bonoro): " + str(stats.get("libwin_kill")) + "\n" + \
+                    "Fapistas Ganharam (politicas): " + str(stats.get("fascwin_policies")) + "\n" + \
+                    "Fapistas Ganharam (Bonoro Presidento): " + str(stats.get("fascwin_hitler")) + "\n" + \
+                    "Moiaram o jogo: " + str(stats.get("cancelled")) + "\n\n" + \
+                    "Quantidade de grupos: " + str(len(stats.get("groups"))) + "\n" + \
+                    "Jogos rolando agora: "
         bot.send_message(cid, stattext)
 
 
@@ -211,7 +211,6 @@ def command_cancelgame(bot, update):
         else:
             bot.send_message(cid, "Só quem começou o jogo ou o admin do grupo podem cancelar o jogo com /cancelgame, o resto é golpe")
     else:
-        bot.send_message(cid, "There is no game in this chat. Create a new game with /newgame")
         bot.send_message(cid, "Não há nenhum jogo neste chat. Crie um novo jogo com /newgame")
 
 
