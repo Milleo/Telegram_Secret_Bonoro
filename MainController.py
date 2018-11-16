@@ -315,18 +315,18 @@ def pass_two_policies(bot, game):
 
 def enact_policy(bot, game, policy, anarchy):
     log.info('enact_policy called')
-    if policy == "liberal":
+    if policy.startswith("esquerda"):
         game.board.state.liberal_track += 1
-    elif policy == "fascist":
+    elif policy.startswith("direita"):
         game.board.state.fascist_track += 1
     game.board.state.failed_votes = 0  # reset counter
     if not anarchy:
         bot.send_message(game.cid,
-                         "President %s and Chancellor %s enacted a %s policy!" % (
+                         "Presidente %s e o vice %s promungaram a política %s!" % (
                              game.board.state.president.name, game.board.state.chancellor.name, policy))
     else:
         bot.send_message(game.cid,
-                         "The top most policy was enacted: %s" % policy)
+                         "A Política máxima %s foi promungada" % policy)
     sleep(3)
     bot.send_message(game.cid, game.board.print_board())
     # end of round
@@ -340,7 +340,7 @@ def enact_policy(bot, game, policy, anarchy):
     # End of legislative session, shuffle if necessary 
     shuffle_policy_pile(bot, game)    
     if not anarchy:
-        if policy == "fascist":
+        if policy.startswith("direita"):
             action = game.board.fascist_track_actions[game.board.state.fascist_track - 1]
             if action is None and game.board.state.fascist_track == 6:
                 pass
@@ -348,29 +348,29 @@ def enact_policy(bot, game, policy, anarchy):
                 start_next_round(bot, game)
             elif action == "policy":
                 bot.send_message(game.cid,
-                                 "Presidential Power enabled: Policy Peek " + u"\U0001F52E" + "\nPresident %s now knows the next three policies on "
-                                                                                              "the pile.  The President may share "
-                                                                                              "(or lie about!) the results of their "
-                                                                                              "investigation at their discretion." % game.board.state.president.name)
+                                 "Poder presidencial acionado: Mãe de ná " + u"\U0001F52E" + "\nO presidente %s agora sabe quais políticas estão no baralho "
+                                                                                              "O presidente pode falar quais são as políticas"
+                                                                                              "(ou ser um babaca e mentir)" % game.board.state.president.name)
                 action_policy(bot, game)
             elif action == "kill":
                 bot.send_message(game.cid,
-                                 "Presidential Power enabled: Execution " + u"\U0001F5E1" + "\nPresident %s has to kill one person. You can "
-                                                                                            "discuss the decision now but the "
-                                                                                            "President has the final say." % game.board.state.president.name)
+                                 "Poder presidencial acionado: Meter a azeitona " + u"\U0001F5E1" + "\nO presidente %s ficou 1000% pistola e quer matar alguém "
+                                                                                            "vocês podem acoselhá-lo quem deve ser crivado de bala,"
+                                                                                            "mas ele é que tem "
+                                                                                            "a palavra final." % game.board.state.president.name)
                 action_kill(bot, game)
             elif action == "inspect":
                 bot.send_message(game.cid,
-                                 "Presidential Power enabled: Investigate Loyalty " + u"\U0001F50E" + "\nPresident %s may see the party membership of one "
-                                                                                                      "player. The President may share "
-                                                                                                      "(or lie about!) the results of their "
-                                                                                                      "investigation at their discretion." % game.board.state.president.name)
+                                 "Poder presidencial acionado: Operação Lava-Jato " + u"\U0001F50E" + "\nCuidado que o Moro e o Japonês da PF vem aí, "
+                                                                                                      "O presidente quer ver se você é PeTralha (ou não), "
+                                                                                                      "só o presidente vai ficar sabendo se a pessoa é PeTralha ou não"
+                                                                                                      "e ele pode mentir sobre o resultado da investigação #aGloboMente" % game.board.state.president.name)
                 action_inspect(bot, game)
             elif action == "choose":
                 bot.send_message(game.cid,
-                                 "Presidential Power enabled: Call Special Election " + u"\U0001F454" + "\nPresident %s gets to choose the next presidential "
-                                                                                                        "candidate. Afterwards the order resumes "
-                                                                                                        "back to normal." % game.board.state.president.name)
+                                 "Poder presidencial acionado: Acusar o Golpe " + u"\U0001F454" + "\nO presidente %s se encheu dessa patifaria e vai "
+                                                                                                        "indicar um amiguinho para ser presidente. "
+                                                                                                        "Depois dessa palhaçada, a ordem de eleição volta ao normal." % game.board.state.president.name)
                 action_choose(bot, game)
         else:
             start_next_round(bot, game)
@@ -388,10 +388,10 @@ def choose_veto(bot, update):
         game = GamesController.games[cid]
         uid = callback.from_user.id
         if answer == "yesveto":
-            log.info("Player %s (%d) accepted the veto" % (callback.from_user.first_name, uid))
-            bot.edit_message_text("You accepted the Veto!", uid, callback.message.message_id)
+            log.info("Jogador %s (%d) aceitou o veto" % (callback.from_user.first_name, uid))
+            bot.edit_message_text("Você aceitou o veto!", uid, callback.message.message_id)
             bot.send_message(game.cid,
-                             "President %s accepted Chancellor %s's Veto. No policy was enacted but this counts as a failed election." % (
+                             "Presidente %s aceitou o veto do vice %s. Nenhuma política foi promulgada, então isso conta como uma eleição nula." % (
                                  game.board.state.president.name, game.board.state.chancellor.name))
             game.board.discards += game.board.state.drawn_policies
             game.board.state.drawn_policies = []
@@ -402,11 +402,11 @@ def choose_veto(bot, update):
                 bot.send_message(game.cid, game.board.print_board())
                 start_next_round(bot, game)
         elif answer == "noveto":
-            log.info("Player %s (%d) declined the veto" % (callback.from_user.first_name, uid))
+            log.info("Jogador %s (%d) cancelou o veto" % (callback.from_user.first_name, uid))
             game.board.state.veto_refused = True
-            bot.edit_message_text("You refused the Veto!", uid, callback.message.message_id)
+            bot.edit_message_text("Você recusou o veto!", uid, callback.message.message_id)
             bot.send_message(game.cid,
-                             "President %s refused Chancellor %s's Veto. The Chancellor now has to choose a policy!" % (
+                             "O presidente %s recusou o veto do vice %s. O vice agora tem que escolher uma política!" % (
                                  game.board.state.president.name, game.board.state.chancellor.name))
             pass_two_policies(bot, game)
         else:
@@ -418,7 +418,7 @@ def choose_veto(bot, update):
 def do_anarchy(bot, game):
     log.info('do_anarchy called')
     bot.send_message(game.cid, game.board.print_board())
-    bot.send_message(game.cid, "ANARCHY!!")
+    bot.send_message(game.cid, "PETRALHICE!!! LULA LIVRE HOJE E SEMPRE")
     game.board.state.president = None
     game.board.state.chancellor = None
     top_policy = game.board.policies.pop(0)
@@ -450,7 +450,7 @@ def action_kill(bot, game):
     killMarkup = InlineKeyboardMarkup(btns)
     bot.send_message(game.board.state.president.uid, game.board.print_board())
     bot.send_message(game.board.state.president.uid,
-                     'You have to kill one person. You can discuss your decision with the others. Choose wisely!',
+                     'Você pode dar o tiro em alguém (a pessoa vai morrer nesse processo). Converse com os demais sobre essa decisão.',
                      reply_markup=killMarkup)
 
 
@@ -468,15 +468,15 @@ def choose_kill(bot, update):
             game.board.state.player_counter -= 1
         game.player_sequence.remove(chosen)
         game.board.state.dead += 1
-        log.info("Player %s (%d) killed %s (%d)" % (
+        log.info("Jogador %s (%d) deu uma porrada de tiro em  %s (%d)" % (
             callback.from_user.first_name, callback.from_user.id, chosen.name, chosen.uid))
-        bot.edit_message_text("You killed %s!" % chosen.name, callback.from_user.id, callback.message.message_id)
-        if chosen.role == "Hitler":
-            bot.send_message(game.cid, "President " + game.board.state.president.name + " killed " + chosen.name + ". ")
+        bot.edit_message_text("Você matou o %s!" % chosen.name, callback.from_user.id, callback.message.message_id)
+        if chosen.role == "Bonoro":
+            bot.send_message(game.cid, "O presidente " + game.board.state.president.name + " matou " + chosen.name + ". ")
             end_game(bot, game, 2)
         else:
             bot.send_message(game.cid,
-                             "President %s killed %s who was not Hitler. %s, you are dead now and are not allowed to talk anymore!" % (
+                             "O presidente %s matou %s que não era o Bonoro. %s, agora você morreu e morto não fala, então fica na maciota ai!" % (
                                  game.board.state.president.name, chosen.name, chosen.name))
             bot.send_message(game.cid, game.board.print_board())
             start_next_round(bot, game)
@@ -497,7 +497,7 @@ def action_choose(bot, game):
     inspectMarkup = InlineKeyboardMarkup(btns)
     bot.send_message(game.board.state.president.uid, game.board.print_board())
     bot.send_message(game.board.state.president.uid,
-                     'You get to choose the next presidential candidate. Afterwards the order resumes back to normal. Choose wisely!',
+                     'Escolhe seu amiguinho aí pra ser candidato a presidente',
                      reply_markup=inspectMarkup)
 
 

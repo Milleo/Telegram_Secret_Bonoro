@@ -2,9 +2,9 @@ playerSets = {
     # only for testing purposes
     3: {
         "roles": [
-            "Liberal",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             None,
@@ -18,10 +18,10 @@ playerSets = {
     # only for testing purposes
     4: {
         "roles": [
-            "Liberal",
-            "Liberal",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "PeTralha",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             None,
@@ -34,11 +34,11 @@ playerSets = {
     },
     5: {
         "roles": [
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             None,
@@ -51,12 +51,12 @@ playerSets = {
     },
     6: {
         "roles": [
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             None,
@@ -69,13 +69,13 @@ playerSets = {
     },
     7: {
         "roles": [
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Fascist",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "Bolsominion",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             None,
@@ -88,14 +88,14 @@ playerSets = {
     },
     8: {
         "roles": [
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Fascist",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "Bolsominion",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             None,
@@ -108,15 +108,15 @@ playerSets = {
     },
     9: {
         "roles": [
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Fascist",
-            "Fascist",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "Bolsominion",
+            "Bolsominion",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             "inspect",
@@ -129,16 +129,16 @@ playerSets = {
     },
     10: {
         "roles": [
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Liberal",
-            "Fascist",
-            "Fascist",
-            "Fascist",
-            "Hitler"
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "PeTralha",
+            "Bolsominion",
+            "Bolsominion",
+            "Bolsominion",
+            "Bonoro"
         ],
         "track": [
             "inspect",
