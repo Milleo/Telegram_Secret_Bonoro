@@ -65,7 +65,7 @@ def command_tabuleiro(bot, update):
         if GamesController.games[cid].board:
             bot.send_message(cid, GamesController.games[cid].board.print_board())
         else:
-            bot.send_message(cid, "Não tem nenhum jogo em andamento no chat. Para começar digite /iniciarjogo")
+            bot.send_message(cid, "Não tem nenhum jogo em andamento no chat. Para começar digite /comecarjogo")
     else:
         bot.send_message(cid, "Não tem nenhum jogo criado neste chat. Crie um novo jogo digitando /novojogo")
 
@@ -139,7 +139,7 @@ def command_novojogo(bot, update):
             stats.get("groups").append(cid)
             with open(STATS, 'w') as f:
                 json.dump(stats, f)
-        bot.send_message(cid, "Novo jogo criado! Cada jogador deve mandar o comando /participar do jogo.\nQuem iniciou o jogo (ou o admin do grupo) pode, /participar também e então digitar /iniciarjogo quando todos já confirmaram participação")
+        bot.send_message(cid, "Novo jogo criado! Cada jogador deve mandar o comando /participar do jogo.\nQuem iniciou o jogo (ou o admin do grupo) pode, /participar também e então digitar /comecarjogo quando todos já confirmaram participação")
 
 
 def command_participar(bot, update):
@@ -167,15 +167,15 @@ def command_participar(bot, update):
             game.add_player(uid, player)
         except Exception:
             bot.send_message(game.cid,
-                             fname + ", Eu não consigo te mandar uma mensagem privada, abra um chat com @SecretBonoroBot e clique em \"start\".\nDepois envie neste chat \participar de novo")
+                             fname + ", Eu não consigo te mandar uma mensagem privada, abra um chat com @SecretBonoroBot e clique em \"start\".\nDepois envie neste chat /participar de novo")
         else:
             log.info("%s (%d) joined a game in %d" % (fname, uid, game.cid))
             if len(game.playerlist) > 4:
-                bot.send_message(game.cid, fname + " está participando do jogo. Digite /iniciarjogo se você quiser começar o jogo com %d jogadores!" % len(game.playerlist))
+                bot.send_message(game.cid, fname + " está participando do jogo. Digite /comecarjogo se você quiser começar o jogo com %d jogadores!" % len(game.playerlist))
             elif len(game.playerlist) == 1:
-                bot.send_message(game.cid, "%s está particpando do jogo. Por enquanto temos %d jogadores participando, e precisamos de 5 a 10 jogadores." % (fname, len(game.playerlist)))
+                bot.send_message(game.cid, "%s está participando do jogo. Por enquanto temos %d jogadores participando, e precisamos de 5 a 10 jogadores." % (fname, len(game.playerlist)))
             else:
-                bot.send_message(game.cid, "%s está particpando do jogo. Por enquanto temos %d jogadores participando, e precisamos de 5 a 10 jogadores." % (fname, len(game.playerlist)))
+                bot.send_message(game.cid, "%s está participando do jogo. Por enquanto temos %d jogadores participando, e precisamos de 5 a 10 jogadores." % (fname, len(game.playerlist)))
 
 
 def command_comecarjogo(bot, update):

@@ -21,7 +21,7 @@ class Game(object):
     def get_fascists(self):
         fascists = []
         for uid in self.playerlist:
-            if self.playerlist[uid].role == "Bolsominion":
+            if self.playerlist[uid].role.startswith("Bolsominion"):
                 fascists.append(self.playerlist[uid])
         return fascists
 

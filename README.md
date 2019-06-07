@@ -18,7 +18,7 @@ Clique em start e adicione o bot a um grupo (são necessários de 5 a 10 jogador
 
 /participar - Adiciona você a partida
 
-/iniciarjogo - Começa a partida com todos os jogadores que decidiram participar da partida
+/comecarjogo - Começa a partida com todos os jogadores que decidiram participar da partida
 
 /cancelarjogo - Cancela o jogo
 
