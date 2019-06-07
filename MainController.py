@@ -539,7 +539,7 @@ def action_inspect(bot, game):
     inspectMarkup = InlineKeyboardMarkup(btns)
     bot.send_message(game.board.state.president.uid, game.board.print_board())
     bot.send_message(game.board.state.president.uid,
-                     'Aqui você pode ver se o jogador é um comunista safado. De quem você quer saber?',
+                     'Aqui você pode ver se o jogador é um comunista safado ou se ele é cidadão de bem. De quem você quer saber?',
                      reply_markup=inspectMarkup)
 
 
