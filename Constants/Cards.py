@@ -1,3 +1,5 @@
+# coding: utf-8
+
 playerSets = {
     # only for testing purposes
     3: {
@@ -34,10 +36,10 @@ playerSets = {
     },
     5: {
         "roles": [
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "Bolsominion",
+            "PeTralha - Pablo Vittar",
+            "PeTralha - Lula",
+            "PeTralha - Cirão da massa",
+            "Bolsominion - Olavo de Carvalho",
             "Bonoro"
         ],
         "track": [
@@ -51,11 +53,11 @@ playerSets = {
     },
     6: {
         "roles": [
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "Bolsominion",
+            "PeTralha - Pablo Vittar",
+            "PeTralha - Lula",
+            "PeTralha - Cirão da massa",
+            "PeTralha - Dilmãe",
+            "Bolsominion - Olavo de Carvalho",
             "Bonoro"
         ],
         "track": [
@@ -69,12 +71,12 @@ playerSets = {
     },
     7: {
         "roles": [
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "Bolsominion",
-            "Bolsominion",
+            "PeTralha - Pablo Vittar",
+            "PeTralha - Lula",
+            "PeTralha - Cirão da massa",
+            "PeTralha - Dilmãe",
+            "Bolsominion - Olavo de Carvalho",
+            "Bolsominion - Mamãe caguei",
             "Bonoro"
         ],
         "track": [
@@ -88,13 +90,13 @@ playerSets = {
     },
     8: {
         "roles": [
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "Bolsominion",
-            "Bolsominion",
+            "PeTralha - Pablo Vittar",
+            "PeTralha - Lula",
+            "PeTralha - Cirão da massa",
+            "PeTralha - Dilmãe",
+            "PeTralha - Marilena Chauí",
+            "Bolsominion - Olavo de Carvalho",
+            "Bolsominion - Mamãe caguei",
             "Bonoro"
         ],
         "track": [
@@ -108,14 +110,14 @@ playerSets = {
     },
     9: {
         "roles": [
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "Bolsominion",
-            "Bolsominion",
-            "Bolsominion",
+            "PeTralha - Pablo Vittar",
+            "PeTralha - Lula",
+            "PeTralha - Cirão da massa",
+            "PeTralha - Dilmãe",
+            "PeTralha - Marilena Chauí",
+            "Bolsominion - Olavo de Carvalho",
+            "Bolsominion - Mamãe caguei",
+            "Bolsominion - General Mourão",
             "Bonoro"
         ],
         "track": [
@@ -129,15 +131,15 @@ playerSets = {
     },
     10: {
         "roles": [
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "PeTralha",
-            "Bolsominion",
-            "Bolsominion",
-            "Bolsominion",
+            "PeTralha - Pablo Vittar",
+            "PeTralha - Lula",
+            "PeTralha - Cirão da massa",
+            "PeTralha - Dilmãe",
+            "PeTralha - Marilena Chauí",
+            "PeTralha - Cabo Daciolo [GLORIA A DEUX]",
+            "Bolsominion - Olavo de Carvalho",
+            "Bolsominion - Mamãe caguei",
+            "Bolsominion - General Mourão",
             "Bonoro"
         ],
         "track": [
@@ -152,21 +154,21 @@ playerSets = {
 }
 
 policies = [
-        "liberal",
-        "liberal",
-        "liberal",
-        "liberal",
-        "liberal",
-        "liberal",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist",
-        "fascist"
+        "Esquerdista - Implantação do Kit Gay",
+        "Esquerdista - Mamdeira de Piroca",
+        "Esquerdista - Constituinte da URSAL",
+        "Esquerdista - Gulags Canavieiros",
+        "Esquerdista - Doutrinação Gayzista",
+        "Esquerdista - Proibição de ter hetero",
+        "Patriota - Privatização da Amazônia",
+        "Patriota - Declarar guerra à Venezuela",
+        "Patriota - Escola sem partido",
+        "Patriota - Expulsar médicos cubanos",
+        "Patriota - Obrigatoriedade do porte de arma",
+        "Patriota - Implantação do Comando Caça Comunista",
+        "Patriota - Volta da ditadura",
+        "Patriota - Proibir o MST",
+        "Patriota - Exploração do Nióbio",
+        "Patriota - Escolas militares",
+        "Patriota - Mandar o Pablo Vittar pra Portugal"
     ]

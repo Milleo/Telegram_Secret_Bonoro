@@ -315,9 +315,9 @@ def pass_two_policies(bot, game):
 
 def enact_policy(bot, game, policy, anarchy):
     log.info('enact_policy called')
-    if policy.startswith("esquerda"):
+    if policy.startswith("Esquerdista"):
         game.board.state.liberal_track += 1
-    elif policy.startswith("direita"):
+    elif policy.startswith("Patriota"):
         game.board.state.fascist_track += 1
     game.board.state.failed_votes = 0  # reset counter
     if not anarchy:
@@ -550,13 +550,13 @@ def choose_inspect(bot, update):
         game = GamesController.games[cid]
         chosen = game.playerlist[answer]
         log.info(
-            "Player %s (%d) inspects %s (%d)'s party membership (%s)" % (
+            "O Presidente %s (%d) investogou, com a ajuda do Excelentissimo Sr. Sergio Moro, %s (%d)'s e ele é um (%s)" % (
                 callback.from_user.first_name, callback.from_user.id, chosen.name, chosen.uid,
                 chosen.party))
-        bot.edit_message_text("The party membership of %s is %s" % (chosen.name, chosen.party),
+        bot.edit_message_text("O %s é %s" % (chosen.name, chosen.party),
                               callback.from_user.id,
                               callback.message.message_id)
-        bot.send_message(game.cid, "President %s inspected %s." % (game.board.state.president.name, chosen.name))
+        bot.send_message(game.cid, "Presidente %s investigou, com a ajuda do Excelentissimo Sr. Sergio Moro, %s." % (game.board.state.president.name, chosen.name))
         start_next_round(bot, game)
     except:
         log.error("choose_inspect: Game or board should not be None!")
@@ -597,27 +597,27 @@ def end_game(bot, game, game_endcode):
     if game_endcode == 99:
         if GamesController.games[game.cid].board is not None:
             bot.send_message(game.cid,
-                             "Game cancelled!\n\n%s" % game.print_roles())
+                             "Jogo cancelado!\n\n%s" % game.print_roles())
             # bot.send_message(ADMIN, "Game of Secret Hitler canceled in group %d" % game.cid)
             stats['cancelled'] = stats['cancelled'] + 1
         else:
-            bot.send_message(game.cid, "Game cancelled!")
+            bot.send_message(game.cid, "Jogo cancelado!")
     else:
         if game_endcode == -2:
             bot.send_message(game.cid,
-                             "Game over! The fascists win by electing Hitler as Chancellor!\n\n%s" % game.print_roles())
+                             "Brasil, ame-o ou deixe-o! Os Patriotas venceram elegendo o Bonoro como vice!\n\n%s" % game.print_roles())
             stats['fascwin_hitler'] = stats['fascwin_hitler'] + 1
         if game_endcode == -1:
             bot.send_message(game.cid,
-                             "Game over! The fascists win by enacting 6 fascist policies!\n\n%s" % game.print_roles())
+                             "Brasil, ame-o ou deixe-o! Todas as 6 políticas em favor da família foram promungadas!\n\n%s" % game.print_roles())
             stats['fascwin_policies'] = stats['fascwin_policies'] + 1
         if game_endcode == 1:
             bot.send_message(game.cid,
-                             "Game over! The liberals win by enacting 5 liberal policies!\n\n%s" % game.print_roles())
+                             "LACROU! Todas as 5 políticas esquerdistas gayzistas comunistas foram promungadas!\n\n%s" % game.print_roles())
             stats['libwin_policies'] = stats['libwin_policies'] + 1
         if game_endcode == 2:
             bot.send_message(game.cid,
-                             "Game over! The liberals win by killing Hitler!\n\n%s" % game.print_roles())
+                             "Meu deus do céu! Os esquerdistas ganharam dando uma facada no bonoro!\n\n%s" % game.print_roles())
             stats['libwin_kill'] = stats['libwin_kill'] + 1
 
             # bot.send_message(ADMIN, "Game of Secret Hitler ended in group %d" % game.cid)
